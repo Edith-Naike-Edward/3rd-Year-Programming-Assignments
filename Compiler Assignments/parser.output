@@ -1,0 +1,1947 @@
+Rules useless in parser due to conflicts
+
+   11 param: param
+
+  114 args: args
+
+
+State 26 conflicts: 2 shift/reduce
+State 43 conflicts: 1 reduce/reduce
+State 46 conflicts: 1 reduce/reduce
+State 87 conflicts: 1 shift/reduce, 2 reduce/reduce
+State 135 conflicts: 2 shift/reduce
+State 153 conflicts: 1 shift/reduce, 2 reduce/reduce
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: functionList mainFunction
+
+    2 functionList: functionList function
+    3             | /* empty */
+
+    4 $@1: /* empty */
+
+    5 function: type ID $@1 paramList compoundStmt
+
+    6 $@2: /* empty */
+
+    7 $@3: /* empty */
+
+    8 paramList: O_BRACK $@2 param C_BRACK $@3
+
+    9 $@4: /* empty */
+
+   10 param: param COMMA $@4 param
+   11      | param
+
+   12 $@5: /* empty */
+
+   13 param: type ID $@5
+   14      | /* empty */
+
+   15 $@6: /* empty */
+
+   16 $@7: /* empty */
+
+   17 $@8: /* empty */
+
+   18 $@9: /* empty */
+
+   19 mainFunction: INT $@6 MAIN $@7 O_BRACK $@8 C_BRACK $@9 compoundStmt
+
+   20 $@10: /* empty */
+
+   21 type: INT $@10
+
+   22 $@11: /* empty */
+
+   23 type: FLOAT $@11
+
+   24 $@12: /* empty */
+
+   25 type: VOID $@12
+
+   26 $@13: /* empty */
+
+   27 $@14: /* empty */
+
+   28 compoundStmt: OC_BRACK $@13 localDeclaration statementList CC_BRACK $@14
+
+   29 $@15: /* empty */
+
+   30 $@16: /* empty */
+
+   31 compoundStmt: OC_BRACK $@15 statementList CC_BRACK $@16
+
+   32 $@17: /* empty */
+
+   33 localDeclaration: varDeclaration COMMA $@17 localDeclaration
+
+   34 $@18: /* empty */
+
+   35 localDeclaration: varDeclaration S_COLON $@18 localDeclaration
+
+   36 $@19: /* empty */
+
+   37 localDeclaration: varDeclaration S_COLON $@19
+
+   38 $@20: /* empty */
+
+   39 $@21: /* empty */
+
+   40 varDeclaration: type ID $@20 ASSIGN $@21 expression
+
+   41 statementList: statement statementList
+   42              | statement
+   43              | /* empty */
+
+   44 statement: expression
+
+   45 $@22: /* empty */
+
+   46 $@23: /* empty */
+
+   47 $@24: /* empty */
+
+   48 statement: IF $@22 condition $@23 compoundStmt $@24 else
+
+   49 $@25: /* empty */
+
+   50 statement: WHILE $@25 condition compoundStmt
+
+   51 $@26: /* empty */
+
+   52 $@27: /* empty */
+
+   53 statement: RETURN $@26 expression S_COLON $@27
+
+   54 $@28: /* empty */
+
+   55 $@29: /* empty */
+
+   56 $@30: /* empty */
+
+   57 $@31: /* empty */
+
+   58 $@32: /* empty */
+
+   59 $@33: /* empty */
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 COMMA $@31 expression C_BRACK $@32 S_COLON $@33
+
+   61 $@34: /* empty */
+
+   62 else: ELSE $@34 compoundStmt
+   63     | /* empty */
+
+   64 $@35: /* empty */
+
+   65 $@36: /* empty */
+
+   66 condition: O_BRACK $@35 expression C_BRACK $@36
+
+   67 expression: additiveExpression relop expression
+   68           | additiveExpression
+
+   69 additiveExpression: additiveExpression addop term
+   70                   | term
+
+   71 $@37: /* empty */
+
+   72 relop: LE $@37
+
+   73 $@38: /* empty */
+
+   74 relop: GE $@38
+
+   75 $@39: /* empty */
+
+   76 relop: EQ $@39
+
+   77 $@40: /* empty */
+
+   78 relop: NE $@40
+
+   79 $@41: /* empty */
+
+   80 relop: GT $@41
+
+   81 $@42: /* empty */
+
+   82 relop: LT $@42
+
+   83 $@43: /* empty */
+
+   84 relop: AND $@43
+
+   85 $@44: /* empty */
+
+   86 relop: OR $@44
+
+   87 $@45: /* empty */
+
+   88 relop: NOT $@45
+
+   89 term: term mulop factor
+   90     | factor
+
+   91 $@46: /* empty */
+
+   92 addop: ADD $@46
+
+   93 $@47: /* empty */
+
+   94 addop: SUBTRACT $@47
+
+   95 $@48: /* empty */
+
+   96 mulop: MULTIPLY $@48
+
+   97 $@49: /* empty */
+
+   98 mulop: DIVIDE $@49
+
+   99 $@50: /* empty */
+
+  100 $@51: /* empty */
+
+  101 factor: O_BRACK $@50 expression C_BRACK $@51
+
+  102 $@52: /* empty */
+
+  103 $@53: /* empty */
+
+  104 $@54: /* empty */
+
+  105 factor: ID $@52 O_BRACK $@53 args C_BRACK $@54
+
+  106 $@55: /* empty */
+
+  107 factor: ID $@55
+
+  108 $@56: /* empty */
+
+  109 factor: NUMBER $@56
+
+  110 $@57: /* empty */
+
+  111 factor: FLOAT_NUM $@57
+
+  112 $@58: /* empty */
+
+  113 args: args COMMA $@58 args
+  114     | args
+
+  115 $@59: /* empty */
+
+  116 args: ID $@59
+
+  117 $@60: /* empty */
+
+  118 args: NUMBER $@60
+  119     | /* empty */
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+PRINTF (258) 60
+VOID (259) 25
+IF (260) 48
+ELSE (261) 62
+INT (262) 19 21
+WHILE (263) 50
+FLOAT (264) 23
+RETURN (265) 53
+NUMBER (266) 109 118
+MAIN (267) 19
+FLOAT_NUM (268) 111
+ID (269) 5 13 40 105 107 116
+STRING (270) 60
+LE (271) 72
+ASSIGN (272) 40
+GE (273) 74
+EQ (274) 76
+NE (275) 78
+GT (276) 80
+LT (277) 82
+AND (278) 84
+OR (279) 86
+NOT (280) 88
+ADD (281) 92
+SUBTRACT (282) 94
+DIVIDE (283) 98
+MULTIPLY (284) 96
+O_BRACK (285) 8 19 60 66 101 105
+C_BRACK (286) 8 19 60 66 101 105
+OC_BRACK (287) 28 31
+CC_BRACK (288) 28 31
+S_COLON (289) 35 37 53 60
+COMMA (290) 10 33 60 113
+
+
+Nonterminals, with rules where they appear
+
+$accept (36)
+    on left: 0
+program (37)
+    on left: 1, on right: 0
+functionList (38)
+    on left: 2 3, on right: 1 2
+function (39)
+    on left: 5, on right: 2
+$@1 (40)
+    on left: 4, on right: 5
+paramList (41)
+    on left: 8, on right: 5
+$@2 (42)
+    on left: 6, on right: 8
+$@3 (43)
+    on left: 7, on right: 8
+param (44)
+    on left: 10 11 13 14, on right: 8 10 11
+$@4 (45)
+    on left: 9, on right: 10
+$@5 (46)
+    on left: 12, on right: 13
+mainFunction (47)
+    on left: 19, on right: 1
+$@6 (48)
+    on left: 15, on right: 19
+$@7 (49)
+    on left: 16, on right: 19
+$@8 (50)
+    on left: 17, on right: 19
+$@9 (51)
+    on left: 18, on right: 19
+type (52)
+    on left: 21 23 25, on right: 5 13 40
+$@10 (53)
+    on left: 20, on right: 21
+$@11 (54)
+    on left: 22, on right: 23
+$@12 (55)
+    on left: 24, on right: 25
+compoundStmt (56)
+    on left: 28 31, on right: 5 19 48 50 62
+$@13 (57)
+    on left: 26, on right: 28
+$@14 (58)
+    on left: 27, on right: 28
+$@15 (59)
+    on left: 29, on right: 31
+$@16 (60)
+    on left: 30, on right: 31
+localDeclaration (61)
+    on left: 33 35 37, on right: 28 33 35
+$@17 (62)
+    on left: 32, on right: 33
+$@18 (63)
+    on left: 34, on right: 35
+$@19 (64)
+    on left: 36, on right: 37
+varDeclaration (65)
+    on left: 40, on right: 33 35 37
+$@20 (66)
+    on left: 38, on right: 40
+$@21 (67)
+    on left: 39, on right: 40
+statementList (68)
+    on left: 41 42 43, on right: 28 31 41
+statement (69)
+    on left: 44 48 50 53 60, on right: 41 42
+$@22 (70)
+    on left: 45, on right: 48
+$@23 (71)
+    on left: 46, on right: 48
+$@24 (72)
+    on left: 47, on right: 48
+$@25 (73)
+    on left: 49, on right: 50
+$@26 (74)
+    on left: 51, on right: 53
+$@27 (75)
+    on left: 52, on right: 53
+$@28 (76)
+    on left: 54, on right: 60
+$@29 (77)
+    on left: 55, on right: 60
+$@30 (78)
+    on left: 56, on right: 60
+$@31 (79)
+    on left: 57, on right: 60
+$@32 (80)
+    on left: 58, on right: 60
+$@33 (81)
+    on left: 59, on right: 60
+else (82)
+    on left: 62 63, on right: 48
+$@34 (83)
+    on left: 61, on right: 62
+condition (84)
+    on left: 66, on right: 48 50
+$@35 (85)
+    on left: 64, on right: 66
+$@36 (86)
+    on left: 65, on right: 66
+expression (87)
+    on left: 67 68, on right: 40 44 53 60 66 67 101
+additiveExpression (88)
+    on left: 69 70, on right: 67 68 69
+relop (89)
+    on left: 72 74 76 78 80 82 84 86 88, on right: 67
+$@37 (90)
+    on left: 71, on right: 72
+$@38 (91)
+    on left: 73, on right: 74
+$@39 (92)
+    on left: 75, on right: 76
+$@40 (93)
+    on left: 77, on right: 78
+$@41 (94)
+    on left: 79, on right: 80
+$@42 (95)
+    on left: 81, on right: 82
+$@43 (96)
+    on left: 83, on right: 84
+$@44 (97)
+    on left: 85, on right: 86
+$@45 (98)
+    on left: 87, on right: 88
+term (99)
+    on left: 89 90, on right: 69 70 89
+addop (100)
+    on left: 92 94, on right: 69
+$@46 (101)
+    on left: 91, on right: 92
+$@47 (102)
+    on left: 93, on right: 94
+mulop (103)
+    on left: 96 98, on right: 89
+$@48 (104)
+    on left: 95, on right: 96
+$@49 (105)
+    on left: 97, on right: 98
+factor (106)
+    on left: 101 105 107 109 111, on right: 89 90
+$@50 (107)
+    on left: 99, on right: 101
+$@51 (108)
+    on left: 100, on right: 101
+$@52 (109)
+    on left: 102, on right: 105
+$@53 (110)
+    on left: 103, on right: 105
+$@54 (111)
+    on left: 104, on right: 105
+$@55 (112)
+    on left: 106, on right: 107
+$@56 (113)
+    on left: 108, on right: 109
+$@57 (114)
+    on left: 110, on right: 111
+args (115)
+    on left: 113 114 116 118 119, on right: 105 113 114
+$@58 (116)
+    on left: 112, on right: 113
+$@59 (117)
+    on left: 115, on right: 116
+$@60 (118)
+    on left: 117, on right: 118
+
+
+state 0
+
+    0 $accept: . program $end
+
+    $default  reduce using rule 3 (functionList)
+
+    program       go to state 1
+    functionList  go to state 2
+
+
+state 1
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 3
+
+
+state 2
+
+    1 program: functionList . mainFunction
+    2 functionList: functionList . function
+
+    VOID   shift, and go to state 4
+    INT    shift, and go to state 5
+    FLOAT  shift, and go to state 6
+
+    function      go to state 7
+    mainFunction  go to state 8
+    type          go to state 9
+
+
+state 3
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+state 4
+
+   25 type: VOID . $@12
+
+    $default  reduce using rule 24 ($@12)
+
+    $@12  go to state 10
+
+
+state 5
+
+   19 mainFunction: INT . $@6 MAIN $@7 O_BRACK $@8 C_BRACK $@9 compoundStmt
+   21 type: INT . $@10
+
+    ID        reduce using rule 20 ($@10)
+    $default  reduce using rule 15 ($@6)
+
+    $@6   go to state 11
+    $@10  go to state 12
+
+
+state 6
+
+   23 type: FLOAT . $@11
+
+    $default  reduce using rule 22 ($@11)
+
+    $@11  go to state 13
+
+
+state 7
+
+    2 functionList: functionList function .
+
+    $default  reduce using rule 2 (functionList)
+
+
+state 8
+
+    1 program: functionList mainFunction .
+
+    $default  reduce using rule 1 (program)
+
+
+state 9
+
+    5 function: type . ID $@1 paramList compoundStmt
+
+    ID  shift, and go to state 14
+
+
+state 10
+
+   25 type: VOID $@12 .
+
+    $default  reduce using rule 25 (type)
+
+
+state 11
+
+   19 mainFunction: INT $@6 . MAIN $@7 O_BRACK $@8 C_BRACK $@9 compoundStmt
+
+    MAIN  shift, and go to state 15
+
+
+state 12
+
+   21 type: INT $@10 .
+
+    $default  reduce using rule 21 (type)
+
+
+state 13
+
+   23 type: FLOAT $@11 .
+
+    $default  reduce using rule 23 (type)
+
+
+state 14
+
+    5 function: type ID . $@1 paramList compoundStmt
+
+    $default  reduce using rule 4 ($@1)
+
+    $@1  go to state 16
+
+
+state 15
+
+   19 mainFunction: INT $@6 MAIN . $@7 O_BRACK $@8 C_BRACK $@9 compoundStmt
+
+    $default  reduce using rule 16 ($@7)
+
+    $@7  go to state 17
+
+
+state 16
+
+    5 function: type ID $@1 . paramList compoundStmt
+
+    O_BRACK  shift, and go to state 18
+
+    paramList  go to state 19
+
+
+state 17
+
+   19 mainFunction: INT $@6 MAIN $@7 . O_BRACK $@8 C_BRACK $@9 compoundStmt
+
+    O_BRACK  shift, and go to state 20
+
+
+state 18
+
+    8 paramList: O_BRACK . $@2 param C_BRACK $@3
+
+    $default  reduce using rule 6 ($@2)
+
+    $@2  go to state 21
+
+
+state 19
+
+    5 function: type ID $@1 paramList . compoundStmt
+
+    OC_BRACK  shift, and go to state 22
+
+    compoundStmt  go to state 23
+
+
+state 20
+
+   19 mainFunction: INT $@6 MAIN $@7 O_BRACK . $@8 C_BRACK $@9 compoundStmt
+
+    $default  reduce using rule 17 ($@8)
+
+    $@8  go to state 24
+
+
+state 21
+
+    8 paramList: O_BRACK $@2 . param C_BRACK $@3
+
+    VOID   shift, and go to state 4
+    INT    shift, and go to state 25
+    FLOAT  shift, and go to state 6
+
+    $default  reduce using rule 14 (param)
+
+    param  go to state 26
+    type   go to state 27
+
+
+state 22
+
+   28 compoundStmt: OC_BRACK . $@13 localDeclaration statementList CC_BRACK $@14
+   31             | OC_BRACK . $@15 statementList CC_BRACK $@16
+
+    VOID      reduce using rule 26 ($@13)
+    INT       reduce using rule 26 ($@13)
+    FLOAT     reduce using rule 26 ($@13)
+    $default  reduce using rule 29 ($@15)
+
+    $@13  go to state 28
+    $@15  go to state 29
+
+
+state 23
+
+    5 function: type ID $@1 paramList compoundStmt .
+
+    $default  reduce using rule 5 (function)
+
+
+state 24
+
+   19 mainFunction: INT $@6 MAIN $@7 O_BRACK $@8 . C_BRACK $@9 compoundStmt
+
+    C_BRACK  shift, and go to state 30
+
+
+state 25
+
+   21 type: INT . $@10
+
+    $default  reduce using rule 20 ($@10)
+
+    $@10  go to state 12
+
+
+state 26
+
+    8 paramList: O_BRACK $@2 param . C_BRACK $@3
+   10 param: param . COMMA $@4 param
+   11      | param .
+
+    C_BRACK  shift, and go to state 31
+    COMMA    shift, and go to state 32
+
+    C_BRACK  [reduce using rule 11 (param)]
+    COMMA    [reduce using rule 11 (param)]
+
+
+state 27
+
+   13 param: type . ID $@5
+
+    ID  shift, and go to state 33
+
+
+state 28
+
+   28 compoundStmt: OC_BRACK $@13 . localDeclaration statementList CC_BRACK $@14
+
+    VOID   shift, and go to state 4
+    INT    shift, and go to state 25
+    FLOAT  shift, and go to state 6
+
+    type              go to state 34
+    localDeclaration  go to state 35
+    varDeclaration    go to state 36
+
+
+state 29
+
+   31 compoundStmt: OC_BRACK $@15 . statementList CC_BRACK $@16
+
+    PRINTF     shift, and go to state 37
+    IF         shift, and go to state 38
+    WHILE      shift, and go to state 39
+    RETURN     shift, and go to state 40
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    $default  reduce using rule 43 (statementList)
+
+    statementList       go to state 45
+    statement           go to state 46
+    expression          go to state 47
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 30
+
+   19 mainFunction: INT $@6 MAIN $@7 O_BRACK $@8 C_BRACK . $@9 compoundStmt
+
+    $default  reduce using rule 18 ($@9)
+
+    $@9  go to state 51
+
+
+state 31
+
+    8 paramList: O_BRACK $@2 param C_BRACK . $@3
+
+    $default  reduce using rule 7 ($@3)
+
+    $@3  go to state 52
+
+
+state 32
+
+   10 param: param COMMA . $@4 param
+
+    $default  reduce using rule 9 ($@4)
+
+    $@4  go to state 53
+
+
+state 33
+
+   13 param: type ID . $@5
+
+    $default  reduce using rule 12 ($@5)
+
+    $@5  go to state 54
+
+
+state 34
+
+   40 varDeclaration: type . ID $@20 ASSIGN $@21 expression
+
+    ID  shift, and go to state 55
+
+
+state 35
+
+   28 compoundStmt: OC_BRACK $@13 localDeclaration . statementList CC_BRACK $@14
+
+    PRINTF     shift, and go to state 37
+    IF         shift, and go to state 38
+    WHILE      shift, and go to state 39
+    RETURN     shift, and go to state 40
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    $default  reduce using rule 43 (statementList)
+
+    statementList       go to state 56
+    statement           go to state 46
+    expression          go to state 47
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 36
+
+   33 localDeclaration: varDeclaration . COMMA $@17 localDeclaration
+   35                 | varDeclaration . S_COLON $@18 localDeclaration
+   37                 | varDeclaration . S_COLON $@19
+
+    S_COLON  shift, and go to state 57
+    COMMA    shift, and go to state 58
+
+
+state 37
+
+   60 statement: PRINTF . $@28 O_BRACK $@29 STRING $@30 COMMA $@31 expression C_BRACK $@32 S_COLON $@33
+
+    $default  reduce using rule 54 ($@28)
+
+    $@28  go to state 59
+
+
+state 38
+
+   48 statement: IF . $@22 condition $@23 compoundStmt $@24 else
+
+    $default  reduce using rule 45 ($@22)
+
+    $@22  go to state 60
+
+
+state 39
+
+   50 statement: WHILE . $@25 condition compoundStmt
+
+    $default  reduce using rule 49 ($@25)
+
+    $@25  go to state 61
+
+
+state 40
+
+   53 statement: RETURN . $@26 expression S_COLON $@27
+
+    $default  reduce using rule 51 ($@26)
+
+    $@26  go to state 62
+
+
+state 41
+
+  109 factor: NUMBER . $@56
+
+    $default  reduce using rule 108 ($@56)
+
+    $@56  go to state 63
+
+
+state 42
+
+  111 factor: FLOAT_NUM . $@57
+
+    $default  reduce using rule 110 ($@57)
+
+    $@57  go to state 64
+
+
+state 43
+
+  105 factor: ID . $@52 O_BRACK $@53 args C_BRACK $@54
+  107       | ID . $@55
+
+    O_BRACK   reduce using rule 102 ($@52)
+    O_BRACK   [reduce using rule 106 ($@55)]
+    $default  reduce using rule 106 ($@55)
+
+    $@52  go to state 65
+    $@55  go to state 66
+
+
+state 44
+
+  101 factor: O_BRACK . $@50 expression C_BRACK $@51
+
+    $default  reduce using rule 99 ($@50)
+
+    $@50  go to state 67
+
+
+state 45
+
+   31 compoundStmt: OC_BRACK $@15 statementList . CC_BRACK $@16
+
+    CC_BRACK  shift, and go to state 68
+
+
+state 46
+
+   41 statementList: statement . statementList
+   42              | statement .
+
+    PRINTF     shift, and go to state 37
+    IF         shift, and go to state 38
+    WHILE      shift, and go to state 39
+    RETURN     shift, and go to state 40
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    CC_BRACK  reduce using rule 42 (statementList)
+    CC_BRACK  [reduce using rule 43 (statementList)]
+    $default  reduce using rule 42 (statementList)
+
+    statementList       go to state 69
+    statement           go to state 46
+    expression          go to state 47
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 47
+
+   44 statement: expression .
+
+    $default  reduce using rule 44 (statement)
+
+
+state 48
+
+   67 expression: additiveExpression . relop expression
+   68           | additiveExpression .
+   69 additiveExpression: additiveExpression . addop term
+
+    LE        shift, and go to state 70
+    GE        shift, and go to state 71
+    EQ        shift, and go to state 72
+    NE        shift, and go to state 73
+    GT        shift, and go to state 74
+    LT        shift, and go to state 75
+    AND       shift, and go to state 76
+    OR        shift, and go to state 77
+    NOT       shift, and go to state 78
+    ADD       shift, and go to state 79
+    SUBTRACT  shift, and go to state 80
+
+    $default  reduce using rule 68 (expression)
+
+    relop  go to state 81
+    addop  go to state 82
+
+
+state 49
+
+   70 additiveExpression: term .
+   89 term: term . mulop factor
+
+    DIVIDE    shift, and go to state 83
+    MULTIPLY  shift, and go to state 84
+
+    $default  reduce using rule 70 (additiveExpression)
+
+    mulop  go to state 85
+
+
+state 50
+
+   90 term: factor .
+
+    $default  reduce using rule 90 (term)
+
+
+state 51
+
+   19 mainFunction: INT $@6 MAIN $@7 O_BRACK $@8 C_BRACK $@9 . compoundStmt
+
+    OC_BRACK  shift, and go to state 22
+
+    compoundStmt  go to state 86
+
+
+state 52
+
+    8 paramList: O_BRACK $@2 param C_BRACK $@3 .
+
+    $default  reduce using rule 8 (paramList)
+
+
+state 53
+
+   10 param: param COMMA $@4 . param
+
+    VOID   shift, and go to state 4
+    INT    shift, and go to state 25
+    FLOAT  shift, and go to state 6
+
+    $default  reduce using rule 14 (param)
+
+    param  go to state 87
+    type   go to state 27
+
+
+state 54
+
+   13 param: type ID $@5 .
+
+    $default  reduce using rule 13 (param)
+
+
+state 55
+
+   40 varDeclaration: type ID . $@20 ASSIGN $@21 expression
+
+    $default  reduce using rule 38 ($@20)
+
+    $@20  go to state 88
+
+
+state 56
+
+   28 compoundStmt: OC_BRACK $@13 localDeclaration statementList . CC_BRACK $@14
+
+    CC_BRACK  shift, and go to state 89
+
+
+state 57
+
+   35 localDeclaration: varDeclaration S_COLON . $@18 localDeclaration
+   37                 | varDeclaration S_COLON . $@19
+
+    VOID      reduce using rule 34 ($@18)
+    INT       reduce using rule 34 ($@18)
+    FLOAT     reduce using rule 34 ($@18)
+    $default  reduce using rule 36 ($@19)
+
+    $@18  go to state 90
+    $@19  go to state 91
+
+
+state 58
+
+   33 localDeclaration: varDeclaration COMMA . $@17 localDeclaration
+
+    $default  reduce using rule 32 ($@17)
+
+    $@17  go to state 92
+
+
+state 59
+
+   60 statement: PRINTF $@28 . O_BRACK $@29 STRING $@30 COMMA $@31 expression C_BRACK $@32 S_COLON $@33
+
+    O_BRACK  shift, and go to state 93
+
+
+state 60
+
+   48 statement: IF $@22 . condition $@23 compoundStmt $@24 else
+
+    O_BRACK  shift, and go to state 94
+
+    condition  go to state 95
+
+
+state 61
+
+   50 statement: WHILE $@25 . condition compoundStmt
+
+    O_BRACK  shift, and go to state 94
+
+    condition  go to state 96
+
+
+state 62
+
+   53 statement: RETURN $@26 . expression S_COLON $@27
+
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    expression          go to state 97
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 63
+
+  109 factor: NUMBER $@56 .
+
+    $default  reduce using rule 109 (factor)
+
+
+state 64
+
+  111 factor: FLOAT_NUM $@57 .
+
+    $default  reduce using rule 111 (factor)
+
+
+state 65
+
+  105 factor: ID $@52 . O_BRACK $@53 args C_BRACK $@54
+
+    O_BRACK  shift, and go to state 98
+
+
+state 66
+
+  107 factor: ID $@55 .
+
+    $default  reduce using rule 107 (factor)
+
+
+state 67
+
+  101 factor: O_BRACK $@50 . expression C_BRACK $@51
+
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    expression          go to state 99
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 68
+
+   31 compoundStmt: OC_BRACK $@15 statementList CC_BRACK . $@16
+
+    $default  reduce using rule 30 ($@16)
+
+    $@16  go to state 100
+
+
+state 69
+
+   41 statementList: statement statementList .
+
+    $default  reduce using rule 41 (statementList)
+
+
+state 70
+
+   72 relop: LE . $@37
+
+    $default  reduce using rule 71 ($@37)
+
+    $@37  go to state 101
+
+
+state 71
+
+   74 relop: GE . $@38
+
+    $default  reduce using rule 73 ($@38)
+
+    $@38  go to state 102
+
+
+state 72
+
+   76 relop: EQ . $@39
+
+    $default  reduce using rule 75 ($@39)
+
+    $@39  go to state 103
+
+
+state 73
+
+   78 relop: NE . $@40
+
+    $default  reduce using rule 77 ($@40)
+
+    $@40  go to state 104
+
+
+state 74
+
+   80 relop: GT . $@41
+
+    $default  reduce using rule 79 ($@41)
+
+    $@41  go to state 105
+
+
+state 75
+
+   82 relop: LT . $@42
+
+    $default  reduce using rule 81 ($@42)
+
+    $@42  go to state 106
+
+
+state 76
+
+   84 relop: AND . $@43
+
+    $default  reduce using rule 83 ($@43)
+
+    $@43  go to state 107
+
+
+state 77
+
+   86 relop: OR . $@44
+
+    $default  reduce using rule 85 ($@44)
+
+    $@44  go to state 108
+
+
+state 78
+
+   88 relop: NOT . $@45
+
+    $default  reduce using rule 87 ($@45)
+
+    $@45  go to state 109
+
+
+state 79
+
+   92 addop: ADD . $@46
+
+    $default  reduce using rule 91 ($@46)
+
+    $@46  go to state 110
+
+
+state 80
+
+   94 addop: SUBTRACT . $@47
+
+    $default  reduce using rule 93 ($@47)
+
+    $@47  go to state 111
+
+
+state 81
+
+   67 expression: additiveExpression relop . expression
+
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    expression          go to state 112
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 82
+
+   69 additiveExpression: additiveExpression addop . term
+
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    term    go to state 113
+    factor  go to state 50
+
+
+state 83
+
+   98 mulop: DIVIDE . $@49
+
+    $default  reduce using rule 97 ($@49)
+
+    $@49  go to state 114
+
+
+state 84
+
+   96 mulop: MULTIPLY . $@48
+
+    $default  reduce using rule 95 ($@48)
+
+    $@48  go to state 115
+
+
+state 85
+
+   89 term: term mulop . factor
+
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    factor  go to state 116
+
+
+state 86
+
+   19 mainFunction: INT $@6 MAIN $@7 O_BRACK $@8 C_BRACK $@9 compoundStmt .
+
+    $default  reduce using rule 19 (mainFunction)
+
+
+state 87
+
+   10 param: param . COMMA $@4 param
+   10      | param COMMA $@4 param .
+   11      | param .
+
+    COMMA  shift, and go to state 32
+
+    C_BRACK   reduce using rule 10 (param)
+    C_BRACK   [reduce using rule 11 (param)]
+    COMMA     [reduce using rule 10 (param)]
+    COMMA     [reduce using rule 11 (param)]
+    $default  reduce using rule 10 (param)
+
+
+state 88
+
+   40 varDeclaration: type ID $@20 . ASSIGN $@21 expression
+
+    ASSIGN  shift, and go to state 117
+
+
+state 89
+
+   28 compoundStmt: OC_BRACK $@13 localDeclaration statementList CC_BRACK . $@14
+
+    $default  reduce using rule 27 ($@14)
+
+    $@14  go to state 118
+
+
+state 90
+
+   35 localDeclaration: varDeclaration S_COLON $@18 . localDeclaration
+
+    VOID   shift, and go to state 4
+    INT    shift, and go to state 25
+    FLOAT  shift, and go to state 6
+
+    type              go to state 34
+    localDeclaration  go to state 119
+    varDeclaration    go to state 36
+
+
+state 91
+
+   37 localDeclaration: varDeclaration S_COLON $@19 .
+
+    $default  reduce using rule 37 (localDeclaration)
+
+
+state 92
+
+   33 localDeclaration: varDeclaration COMMA $@17 . localDeclaration
+
+    VOID   shift, and go to state 4
+    INT    shift, and go to state 25
+    FLOAT  shift, and go to state 6
+
+    type              go to state 34
+    localDeclaration  go to state 120
+    varDeclaration    go to state 36
+
+
+state 93
+
+   60 statement: PRINTF $@28 O_BRACK . $@29 STRING $@30 COMMA $@31 expression C_BRACK $@32 S_COLON $@33
+
+    $default  reduce using rule 55 ($@29)
+
+    $@29  go to state 121
+
+
+state 94
+
+   66 condition: O_BRACK . $@35 expression C_BRACK $@36
+
+    $default  reduce using rule 64 ($@35)
+
+    $@35  go to state 122
+
+
+state 95
+
+   48 statement: IF $@22 condition . $@23 compoundStmt $@24 else
+
+    $default  reduce using rule 46 ($@23)
+
+    $@23  go to state 123
+
+
+state 96
+
+   50 statement: WHILE $@25 condition . compoundStmt
+
+    OC_BRACK  shift, and go to state 22
+
+    compoundStmt  go to state 124
+
+
+state 97
+
+   53 statement: RETURN $@26 expression . S_COLON $@27
+
+    S_COLON  shift, and go to state 125
+
+
+state 98
+
+  105 factor: ID $@52 O_BRACK . $@53 args C_BRACK $@54
+
+    $default  reduce using rule 103 ($@53)
+
+    $@53  go to state 126
+
+
+state 99
+
+  101 factor: O_BRACK $@50 expression . C_BRACK $@51
+
+    C_BRACK  shift, and go to state 127
+
+
+state 100
+
+   31 compoundStmt: OC_BRACK $@15 statementList CC_BRACK $@16 .
+
+    $default  reduce using rule 31 (compoundStmt)
+
+
+state 101
+
+   72 relop: LE $@37 .
+
+    $default  reduce using rule 72 (relop)
+
+
+state 102
+
+   74 relop: GE $@38 .
+
+    $default  reduce using rule 74 (relop)
+
+
+state 103
+
+   76 relop: EQ $@39 .
+
+    $default  reduce using rule 76 (relop)
+
+
+state 104
+
+   78 relop: NE $@40 .
+
+    $default  reduce using rule 78 (relop)
+
+
+state 105
+
+   80 relop: GT $@41 .
+
+    $default  reduce using rule 80 (relop)
+
+
+state 106
+
+   82 relop: LT $@42 .
+
+    $default  reduce using rule 82 (relop)
+
+
+state 107
+
+   84 relop: AND $@43 .
+
+    $default  reduce using rule 84 (relop)
+
+
+state 108
+
+   86 relop: OR $@44 .
+
+    $default  reduce using rule 86 (relop)
+
+
+state 109
+
+   88 relop: NOT $@45 .
+
+    $default  reduce using rule 88 (relop)
+
+
+state 110
+
+   92 addop: ADD $@46 .
+
+    $default  reduce using rule 92 (addop)
+
+
+state 111
+
+   94 addop: SUBTRACT $@47 .
+
+    $default  reduce using rule 94 (addop)
+
+
+state 112
+
+   67 expression: additiveExpression relop expression .
+
+    $default  reduce using rule 67 (expression)
+
+
+state 113
+
+   69 additiveExpression: additiveExpression addop term .
+   89 term: term . mulop factor
+
+    DIVIDE    shift, and go to state 83
+    MULTIPLY  shift, and go to state 84
+
+    $default  reduce using rule 69 (additiveExpression)
+
+    mulop  go to state 85
+
+
+state 114
+
+   98 mulop: DIVIDE $@49 .
+
+    $default  reduce using rule 98 (mulop)
+
+
+state 115
+
+   96 mulop: MULTIPLY $@48 .
+
+    $default  reduce using rule 96 (mulop)
+
+
+state 116
+
+   89 term: term mulop factor .
+
+    $default  reduce using rule 89 (term)
+
+
+state 117
+
+   40 varDeclaration: type ID $@20 ASSIGN . $@21 expression
+
+    $default  reduce using rule 39 ($@21)
+
+    $@21  go to state 128
+
+
+state 118
+
+   28 compoundStmt: OC_BRACK $@13 localDeclaration statementList CC_BRACK $@14 .
+
+    $default  reduce using rule 28 (compoundStmt)
+
+
+state 119
+
+   35 localDeclaration: varDeclaration S_COLON $@18 localDeclaration .
+
+    $default  reduce using rule 35 (localDeclaration)
+
+
+state 120
+
+   33 localDeclaration: varDeclaration COMMA $@17 localDeclaration .
+
+    $default  reduce using rule 33 (localDeclaration)
+
+
+state 121
+
+   60 statement: PRINTF $@28 O_BRACK $@29 . STRING $@30 COMMA $@31 expression C_BRACK $@32 S_COLON $@33
+
+    STRING  shift, and go to state 129
+
+
+state 122
+
+   66 condition: O_BRACK $@35 . expression C_BRACK $@36
+
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    expression          go to state 130
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 123
+
+   48 statement: IF $@22 condition $@23 . compoundStmt $@24 else
+
+    OC_BRACK  shift, and go to state 22
+
+    compoundStmt  go to state 131
+
+
+state 124
+
+   50 statement: WHILE $@25 condition compoundStmt .
+
+    $default  reduce using rule 50 (statement)
+
+
+state 125
+
+   53 statement: RETURN $@26 expression S_COLON . $@27
+
+    $default  reduce using rule 52 ($@27)
+
+    $@27  go to state 132
+
+
+state 126
+
+  105 factor: ID $@52 O_BRACK $@53 . args C_BRACK $@54
+
+    NUMBER  shift, and go to state 133
+    ID      shift, and go to state 134
+
+    $default  reduce using rule 119 (args)
+
+    args  go to state 135
+
+
+state 127
+
+  101 factor: O_BRACK $@50 expression C_BRACK . $@51
+
+    $default  reduce using rule 100 ($@51)
+
+    $@51  go to state 136
+
+
+state 128
+
+   40 varDeclaration: type ID $@20 ASSIGN $@21 . expression
+
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    expression          go to state 137
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 129
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING . $@30 COMMA $@31 expression C_BRACK $@32 S_COLON $@33
+
+    $default  reduce using rule 56 ($@30)
+
+    $@30  go to state 138
+
+
+state 130
+
+   66 condition: O_BRACK $@35 expression . C_BRACK $@36
+
+    C_BRACK  shift, and go to state 139
+
+
+state 131
+
+   48 statement: IF $@22 condition $@23 compoundStmt . $@24 else
+
+    $default  reduce using rule 47 ($@24)
+
+    $@24  go to state 140
+
+
+state 132
+
+   53 statement: RETURN $@26 expression S_COLON $@27 .
+
+    $default  reduce using rule 53 (statement)
+
+
+state 133
+
+  118 args: NUMBER . $@60
+
+    $default  reduce using rule 117 ($@60)
+
+    $@60  go to state 141
+
+
+state 134
+
+  116 args: ID . $@59
+
+    $default  reduce using rule 115 ($@59)
+
+    $@59  go to state 142
+
+
+state 135
+
+  105 factor: ID $@52 O_BRACK $@53 args . C_BRACK $@54
+  113 args: args . COMMA $@58 args
+  114     | args .
+
+    C_BRACK  shift, and go to state 143
+    COMMA    shift, and go to state 144
+
+    C_BRACK  [reduce using rule 114 (args)]
+    COMMA    [reduce using rule 114 (args)]
+
+
+state 136
+
+  101 factor: O_BRACK $@50 expression C_BRACK $@51 .
+
+    $default  reduce using rule 101 (factor)
+
+
+state 137
+
+   40 varDeclaration: type ID $@20 ASSIGN $@21 expression .
+
+    $default  reduce using rule 40 (varDeclaration)
+
+
+state 138
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 . COMMA $@31 expression C_BRACK $@32 S_COLON $@33
+
+    COMMA  shift, and go to state 145
+
+
+state 139
+
+   66 condition: O_BRACK $@35 expression C_BRACK . $@36
+
+    $default  reduce using rule 65 ($@36)
+
+    $@36  go to state 146
+
+
+state 140
+
+   48 statement: IF $@22 condition $@23 compoundStmt $@24 . else
+
+    ELSE  shift, and go to state 147
+
+    $default  reduce using rule 63 (else)
+
+    else  go to state 148
+
+
+state 141
+
+  118 args: NUMBER $@60 .
+
+    $default  reduce using rule 118 (args)
+
+
+state 142
+
+  116 args: ID $@59 .
+
+    $default  reduce using rule 116 (args)
+
+
+state 143
+
+  105 factor: ID $@52 O_BRACK $@53 args C_BRACK . $@54
+
+    $default  reduce using rule 104 ($@54)
+
+    $@54  go to state 149
+
+
+state 144
+
+  113 args: args COMMA . $@58 args
+
+    $default  reduce using rule 112 ($@58)
+
+    $@58  go to state 150
+
+
+state 145
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 COMMA . $@31 expression C_BRACK $@32 S_COLON $@33
+
+    $default  reduce using rule 57 ($@31)
+
+    $@31  go to state 151
+
+
+state 146
+
+   66 condition: O_BRACK $@35 expression C_BRACK $@36 .
+
+    $default  reduce using rule 66 (condition)
+
+
+state 147
+
+   62 else: ELSE . $@34 compoundStmt
+
+    $default  reduce using rule 61 ($@34)
+
+    $@34  go to state 152
+
+
+state 148
+
+   48 statement: IF $@22 condition $@23 compoundStmt $@24 else .
+
+    $default  reduce using rule 48 (statement)
+
+
+state 149
+
+  105 factor: ID $@52 O_BRACK $@53 args C_BRACK $@54 .
+
+    $default  reduce using rule 105 (factor)
+
+
+state 150
+
+  113 args: args COMMA $@58 . args
+
+    NUMBER  shift, and go to state 133
+    ID      shift, and go to state 134
+
+    $default  reduce using rule 119 (args)
+
+    args  go to state 153
+
+
+state 151
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 COMMA $@31 . expression C_BRACK $@32 S_COLON $@33
+
+    NUMBER     shift, and go to state 41
+    FLOAT_NUM  shift, and go to state 42
+    ID         shift, and go to state 43
+    O_BRACK    shift, and go to state 44
+
+    expression          go to state 154
+    additiveExpression  go to state 48
+    term                go to state 49
+    factor              go to state 50
+
+
+state 152
+
+   62 else: ELSE $@34 . compoundStmt
+
+    OC_BRACK  shift, and go to state 22
+
+    compoundStmt  go to state 155
+
+
+state 153
+
+  113 args: args . COMMA $@58 args
+  113     | args COMMA $@58 args .
+  114     | args .
+
+    COMMA  shift, and go to state 144
+
+    C_BRACK   reduce using rule 113 (args)
+    C_BRACK   [reduce using rule 114 (args)]
+    COMMA     [reduce using rule 113 (args)]
+    COMMA     [reduce using rule 114 (args)]
+    $default  reduce using rule 113 (args)
+
+
+state 154
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 COMMA $@31 expression . C_BRACK $@32 S_COLON $@33
+
+    C_BRACK  shift, and go to state 156
+
+
+state 155
+
+   62 else: ELSE $@34 compoundStmt .
+
+    $default  reduce using rule 62 (else)
+
+
+state 156
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 COMMA $@31 expression C_BRACK . $@32 S_COLON $@33
+
+    $default  reduce using rule 58 ($@32)
+
+    $@32  go to state 157
+
+
+state 157
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 COMMA $@31 expression C_BRACK $@32 . S_COLON $@33
+
+    S_COLON  shift, and go to state 158
+
+
+state 158
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 COMMA $@31 expression C_BRACK $@32 S_COLON . $@33
+
+    $default  reduce using rule 59 ($@33)
+
+    $@33  go to state 159
+
+
+state 159
+
+   60 statement: PRINTF $@28 O_BRACK $@29 STRING $@30 COMMA $@31 expression C_BRACK $@32 S_COLON $@33 .
+
+    $default  reduce using rule 60 (statement)

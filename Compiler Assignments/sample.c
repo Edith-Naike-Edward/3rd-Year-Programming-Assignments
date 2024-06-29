@@ -1,0 +1,29 @@
+
+int highest(int first, int second, int third) {
+    if ((first >= second && first >= third) || (first >= second && first >= third)) {
+        return first;
+    }
+    else {
+        return third;
+    }
+}
+
+int total(int first, int second, int third) {
+    return first + second + third;
+}
+
+float mean(int first, int second, int third) {
+    return total(first, second, third) / 3.0;
+}
+
+int main() {
+    int cat1 = 10; int cat2 = 20; int cat3 = 15;
+
+    int highest_number = highest(cat1, cat2, cat3);
+    float mean_value = mean(cat1, cat2, cat3);
+    
+    printf("Student's highest CAT mark is %d\n", highest_number);
+    printf("Student's avg CATs mark is %.2f\n", mean_value);
+
+    return 0;
+}
