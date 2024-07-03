@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">StatCalc</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="action_settings">Settings</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="placeholder_results">Results will be displayed here</string>
+    <string name="max_numbers_message">Please Input a maximum of 30 Integers</string>
+    <string name="button_text">Calculate</string>
+    <string name="input_placeholder">Enter up to 30 integers separated by spaces</string>
+    <string name="result_text_view">Input must contain only valid numbers separated by spaces.</string>
+    <string name="results">Mean: %1$s\nStandard Deviation: %2$s\nRange: %3$s</string>
+    <string name="button2_text">Generate Random Numbers</string>
+</resources>
