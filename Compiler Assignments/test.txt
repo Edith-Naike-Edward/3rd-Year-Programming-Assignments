@@ -1,0 +1,12 @@
+int main() {
+    int cat1 = 10, int cat2 = 20;
+    int highest_number = highest(cat1, cat2);
+    if (cat1 == cat2) {
+        return first;
+    }
+    else {
+        return third;
+    }
+    printf("Student's highest CAT mark is %d\n", highest_number);
+    return 0;
+}
